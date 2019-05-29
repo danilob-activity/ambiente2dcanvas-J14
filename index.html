@@ -40,23 +40,31 @@
                             </tr>
                             <tr>
                                 <td>Translate:</td>
-                                <td style="white-space: nowrap;">x=<input id="posx" width="20%" type="text" value="0" oninput="updatePosition();"><br></br:>y=<input id="posy" width="20%" type="text" value="0" oninput="updatePosition();"></td>
+                                <td style="white-space: nowrap;">x=<input id="posx" width="20%" type="text" value="0" oninput="updatePosition();"><br>y=<input id="posy" width="20%" type="text" value="0" oninput="updatePosition();"></td>
                             </tr>
                             <tr>
                                 <td>Rotate:</td>
-                                <td width="100%"></td>
+                                <td width="100%">the=<input id="theta" width="20%" type="text" value="0" oninput="updateRotate()"></td>
                             </tr>
                             <tr>
                                 <td>Scale:</td>
-                                <td style='width:20%'></td>
+                                <td style='width:20%'>
+                                    x=<input id="scalex" width="20%" type="text" value="0" oninput="updateScale()">
+                                    <br>
+                                    y=<input id="scaley" width="20%" type="text" value="0" oninput="updateScale()">
+                                </td>
                             </tr>
                             <tr>
                                 <td>Fill color:</td>
-                                <td style='width:20%'></td>
+                                <td style='width:20%'>
+                                    <input id="fill_color" width="20%" type="text" value="#ffffff65" oninput="updateFill()">
+                                </td>
                             </tr>
                             <tr>
                                 <td>Stroke color</td>
-                                <td style='width:20%'></td>
+                                <td style='width:20%'>
+                                    <input id="stroke_color" width="20%" type="text" value="#000000" oninput="updateStroke()">
+                                </td>
                             </tr>
                         </table>
                     </section>

@@ -63,6 +63,15 @@ function pushCircle() {
 function updateDisplay(objectSelected) {
     document.getElementById("posx").value = objectSelected.getTranslate()[0];
     document.getElementById("posy").value = objectSelected.getTranslate()[1];
+
+    document.getElementById("theta").value = objectSelected.getRotate()[0];
+
+    document.getElementById("scalex").value = objectSelected.getScale()[0];
+    document.getElementById("scaley").value = objectSelected.getScale()[1];
+
+    document.getElementById("fill_color").value = objectSelected.getFill();
+
+    document.getElementById("stroke_color").value = objectSelected.getStroke();
 }
 
 function updatePosition() {
@@ -71,6 +80,60 @@ function updatePosition() {
             posx = parseFloat(document.getElementById("posx").value);
             posy = parseFloat(document.getElementById("posy").value);
             objectSelected.setTranslate(posx, posy);
+
+            drawCanvas();
+        } catch (error) {
+            alert(error);
+        }
+    }
+}
+
+function updateRotate() {
+    if (objectSelected != null) {
+        try {
+            theta = parseFloat(document.getElementById("theta").value);
+            objectSelected.setRotate(theta);
+
+            drawCanvas();
+        } catch (error) {
+            alert(error);
+        }
+    }
+}
+
+function updateScale() {
+    if (objectSelected != null) {
+        try {
+            scalex = parseFloat(document.getElementById("scalex").value);
+            scaley = parseFloat(document.getElementById("scaley").value);
+            objectSelected.setScale(scalex, scaley);
+
+            drawCanvas();
+        } catch (error) {
+            alert(error);
+        }
+    }
+}
+
+function updateFill() {
+    if (objectSelected != null) {
+        try {
+            fill_color = document.getElementById("fill_color").value;
+            objectSelected.setFill(fill_color);
+
+            drawCanvas();
+        } catch (error) {
+            alert(error);
+        }
+    }
+}
+
+function updateStroke() {
+    if (objectSelected != null) {
+        try {
+            stroke_color = document.getElementById("stroke_color").value;
+            objectSelected.setStroke(stroke_color);
+
             drawCanvas();
         } catch (error) {
             alert(error);

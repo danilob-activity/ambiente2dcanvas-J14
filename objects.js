@@ -20,6 +20,22 @@ Box.prototype.setName = function(name) {
     this.name = name;
 }
 
+Box.prototype.setFill = function(color) {
+    this.fill = color;
+}
+
+Box.prototype.getFill = function() {
+    return this.fill;
+}
+
+Box.prototype.setStroke = function(color) {
+    this.stroke = color;
+}
+
+Box.prototype.getStroke = function() {
+    return this.stroke;
+}
+
 Box.prototype.setTranslate = function(x, y) {
     this.T = translate(x, y);
 }
@@ -32,9 +48,16 @@ Box.prototype.setRotate = function(theta) {
     this.R = rotate(theta);
 }
 
+Box.prototype.getRotate = function() {
+    return [this.R[0][2], this.R[1][2], 1];
+}
 
 Box.prototype.setScale = function(x, y) {
     this.S = scale(x, y);
+}
+
+Box.prototype.getScale = function() {
+    return [this.S[0][2], this.S[1][2], 1];
 }
 
 Box.prototype.draw = function(canv = ctx) { //requer o contexto de desenho
@@ -98,9 +121,16 @@ Circle.prototype.setRotate = function(theta) {
     this.R = rotate(theta);
 }
 
+Circle.prototype.getRotate = function() {
+    return [this.R[0][2], this.R[1][2], 1];
+}
 
 Circle.prototype.setScale = function(x, y) {
     this.S = scale(x, y);
+}
+
+Circle.prototype.getScale = function() {
+    return [this.S[0][2], this.S[1][2], 1];
 }
 
 Circle.prototype.setRadius = function(r) {
@@ -109,6 +139,18 @@ Circle.prototype.setRadius = function(r) {
 
 Circle.prototype.setFill = function(fill) {
     this.fill = fill;
+}
+
+Circle.prototype.getFill = function() {
+    return this.fill;
+}
+
+Circle.prototype.setStroke = function(color) {
+    this.stroke = color;
+}
+
+Circle.prototype.getStroke = function() {
+    return this.stroke;
 }
 
 Circle.prototype.draw = function(canv = ctx) { //requer o contexto de desenho

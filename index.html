@@ -49,9 +49,9 @@
                             <tr>
                                 <td>Scale:</td>
                                 <td style='width:20%'>
-                                    x=<input id="scalex" width="20%" type="text" value="0" oninput="updateScale()">
+                                    x=<input id="scalex" width="20%" type="text" value="1" oninput="updateScale()">
                                     <br>
-                                    y=<input id="scaley" width="20%" type="text" value="0" oninput="updateScale()">
+                                    y=<input id="scaley" width="20%" type="text" value="1" oninput="updateScale()">
                                 </td>
                             </tr>
                             <tr>
@@ -78,7 +78,7 @@
         <div class="content-wrap">
             <div class="content">
                 <canvas id="canvas" style="display:block; width:100%;
-				height:100%;"></canvas>
+				height:100%;" onclick="clickMouseMove(event)"></canvas>
                 <!-- Related demos -->
 
             </div>

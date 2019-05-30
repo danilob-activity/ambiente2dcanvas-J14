@@ -57,13 +57,13 @@ Box.prototype.setScale = function(x, y) {
 }
 
 Box.prototype.getScale = function() {
-    return [this.S[0][2], this.S[1][2], 1];
+    return [this.S[0][0], this.S[1][1], 1];
 }
 
 Box.prototype.draw = function(canv = ctx) { //requer o contexto de desenho
     //pega matriz de tranformação de coordenadas canônicas para coordenadas do canvas
     var M = transformCanvas(WIDTH, HEIGHT);
-    var Mg = mult(M, mult(mult(this.R, this.S), this.T));
+    var Mg = mult(M, mult(mult(this.T, this.R), this.S));
     canv.lineWidth = 2; //largura da borda
     canv.strokeStyle = this.stroke;
     canv.fillStyle = this.fill;
@@ -156,7 +156,7 @@ Circle.prototype.getStroke = function() {
 Circle.prototype.draw = function(canv = ctx) { //requer o contexto de desenho
     //pega matriz de tranformação de coordenadas canônicas para coordenadas do canvas
     var M = transformCanvas(WIDTH, HEIGHT);
-    var Mg = mult(M, mult(mult(this.R, this.S), this.T));
+    var Mg = mult(M, mult(mult(this.T, this.R), this.S));
     canv.lineWidth = 2; //largura da borda
     canv.strokeStyle = this.stroke;
     canv.fillStyle = this.fill;

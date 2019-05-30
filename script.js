@@ -77,8 +77,8 @@ function updateDisplay(objectSelected) {
 function updatePosition() {
     if (objectSelected != null) {
         try {
-            posx = parseFloat(document.getElementById("posx").value);
-            posy = parseFloat(document.getElementById("posy").value);
+            let posx = parseFloat(document.getElementById("posx").value);
+            let posy = parseFloat(document.getElementById("posy").value);
             objectSelected.setTranslate(posx, posy);
 
             drawCanvas();
@@ -91,7 +91,7 @@ function updatePosition() {
 function updateRotate() {
     if (objectSelected != null) {
         try {
-            theta = parseFloat(document.getElementById("theta").value);
+            let theta = parseFloat(document.getElementById("theta").value);
             objectSelected.setRotate(theta);
 
             drawCanvas();
@@ -104,8 +104,8 @@ function updateRotate() {
 function updateScale() {
     if (objectSelected != null) {
         try {
-            scalex = parseFloat(document.getElementById("scalex").value);
-            scaley = parseFloat(document.getElementById("scaley").value);
+            let scalex = parseFloat(document.getElementById("scalex").value);
+            let scaley = parseFloat(document.getElementById("scaley").value);
             objectSelected.setScale(scalex, scaley);
 
             drawCanvas();
@@ -118,7 +118,7 @@ function updateScale() {
 function updateFill() {
     if (objectSelected != null) {
         try {
-            fill_color = document.getElementById("fill_color").value;
+            let fill_color = document.getElementById("fill_color").value;
             objectSelected.setFill(fill_color);
 
             drawCanvas();
@@ -131,7 +131,7 @@ function updateFill() {
 function updateStroke() {
     if (objectSelected != null) {
         try {
-            stroke_color = document.getElementById("stroke_color").value;
+            let stroke_color = document.getElementById("stroke_color").value;
             objectSelected.setStroke(stroke_color);
 
             drawCanvas();
@@ -139,4 +139,16 @@ function updateStroke() {
             alert(error);
         }
     }
+}
+
+function clickMouseMove(event) {
+    let x = event.offsetX;
+    let y = event.offsetY;
+
+    let M = transformU(WIDTH, HEIGHT);
+
+    let click = [x, y, 1];
+    let v = multVec(M, click);
+
+    console.log(`x coords: ${v[0]}, y coords: ${v[1]}`);
 }

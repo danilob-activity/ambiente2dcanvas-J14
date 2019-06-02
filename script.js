@@ -145,10 +145,16 @@ function clickMouseMove(event) {
     let x = event.offsetX;
     let y = event.offsetY;
 
-    let M = transformU(WIDTH, HEIGHT);
+    let M = transformUsual(WIDTH, HEIGHT);
 
     let click = [x, y, 1];
-    let v = multVec(M, click);
+    let coords_u = multVec(M, click);
 
-    console.log(`x coords: ${v[0]}, y coords: ${v[1]}`);
+    objectSelected = null;
+    for (let i = 0; i < objects.length; i++) {
+        if (objects[i].tryIntersection(coords_u)) {
+            console.log("Houve interseção!");
+            objectSelected = objects[i];
+        }
+    }
 }

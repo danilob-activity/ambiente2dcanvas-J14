@@ -60,6 +60,42 @@ Box.prototype.getScale = function() {
     return [this.S[0][0], this.S[1][1], 1];
 }
 
+Box.prototype.getInverseScale = function() {
+    return inverseScale(this.S);
+}
+
+Box.prototype.getInverseRotate = function() {
+    return inverseRotate(this.R);
+}
+
+Box.prototype.getInverseTranslate = function() {
+    return inverseTranslate(this.T);
+}
+
+Box.prototype.tryIntersection = function(coords) {
+    let inverse_scale = this.getInverseScale();
+    let inverse_rotate = this.getInverseRotate();
+    let inverse_translate = this.getInverseTranslate();
+
+    let inverse_m = mult(mult(inverse_scale, inverse_rotate), inverse_translate);
+
+    let coords_l = multVec(inverse_m, coords);
+
+    var points = [];
+    points.push([this.center[0] + this.width / 2, this.center[1] + this.height / 2, 1]);
+    points.push([this.center[0] - this.width / 2, this.center[1] + this.height / 2, 1]);
+    points.push([this.center[0] - this.width / 2, this.center[1] - this.height / 2, 1]);
+    points.push([this.center[0] + this.width / 2, this.center[1] - this.height / 2, 1]);
+
+    if (coords_l[0] >= points[1][0] && coords_l[0] <= points[0][0]) {
+        if (coords_l[1] >= points[2][1] && coords_l[1] <= points[1][1]) {
+            return true;
+        }
+    }
+
+    return false;
+}
+
 Box.prototype.draw = function(canv = ctx) { //requer o contexto de desenho
     //pega matriz de tranformação de coordenadas canônicas para coordenadas do canvas
     var M = transformCanvas(WIDTH, HEIGHT);
@@ -122,7 +158,7 @@ Circle.prototype.setRotate = function(theta) {
 }
 
 Circle.prototype.getRotate = function() {
-    return [this.R[0][2], this.R[1][2], 1];
+    return [this.R[0][0], this.R[0][1], 1];
 }
 
 Circle.prototype.setScale = function(x, y) {
@@ -130,7 +166,7 @@ Circle.prototype.setScale = function(x, y) {
 }
 
 Circle.prototype.getScale = function() {
-    return [this.S[0][2], this.S[1][2], 1];
+    return [this.S[0][0], this.S[1][1], 1];
 }
 
 Circle.prototype.setRadius = function(r) {
@@ -151,6 +187,39 @@ Circle.prototype.setStroke = function(color) {
 
 Circle.prototype.getStroke = function() {
     return this.stroke;
+}
+
+Circle.prototype.getInverseScale = function() {
+    return inverseScale(this.S);
+}
+
+Circle.prototype.getInverseRotate = function() {
+    return inverseRotate(this.R);
+}
+
+Circle.prototype.getInverseTranslate = function() {
+    return inverseTranslate(this.T);
+}
+
+Circle.prototype.tryIntersection = function(coords) {
+    let inverse_scale = this.getInverseScale();
+    let inverse_rotate = this.getInverseRotate();
+    let inverse_translate = this.getInverseTranslate();
+
+    let inverse_m = mult(mult(inverse_scale, inverse_rotate), inverse_translate);
+
+    let coords_l = multVec(inverse_m, coords);
+
+    let x = Math.pow(coords_l[0] - this.center[0], 2);
+    let y = Math.pow(coords_l[1] - this.center[1], 2);
+
+    let d = Math.sqrt(x + y);
+
+    if (d <= this.radius) {
+        return true;
+    }
+
+    return false;
 }
 
 Circle.prototype.draw = function(canv = ctx) { //requer o contexto de desenho

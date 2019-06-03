@@ -13,6 +13,8 @@ canvas.height = HEIGHT;
 var objects = []; //lista de objetos
 var objectSelected = null;
 
+var flag = 0;
+
 function drawCanvas() {
     ctx.clearRect(0, 0, WIDTH, HEIGHT);
     ctx.setTransform(1, 0, 0, 1, 0, 0);
@@ -153,8 +155,39 @@ function clickMouseMove(event) {
     objectSelected = null;
     for (let i = 0; i < objects.length; i++) {
         if (objects[i].tryIntersection(coords_u)) {
-            console.log("Houve interseção!");
             objectSelected = objects[i];
+            updateDisplay();
+        }
+    }
+}
+
+function overClick(event) {
+    flag = 0;
+}
+
+function setToMoveObject() {
+    flag = 1;
+}
+
+document.addEventListener("dblclick", setToMoveObject);
+
+document.addEventListener("mousemove", moveObject);
+
+document.addEventListener("click", overClick);
+
+function moveObject(event) {
+    if (flag == 1) {
+        if (objectSelected != null) {
+            let x = event.offsetX;
+            let y = event.offsetY;
+
+            let M = transformUsual(WIDTH, HEIGHT);
+
+            let click = [x, y, 1];
+
+            let pos = multVec(M, click);
+            objectSelected.setTranslate(pos[0], pos[1]);
+            drawCanvas();
         }
     }
 }

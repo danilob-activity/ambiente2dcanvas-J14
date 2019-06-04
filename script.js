@@ -66,7 +66,7 @@ function updateDisplay(objectSelected) {
     document.getElementById("posx").value = objectSelected.getTranslate()[0];
     document.getElementById("posy").value = objectSelected.getTranslate()[1];
 
-    document.getElementById("theta").value = objectSelected.getRotate()[0];
+    document.getElementById("theta").value = objectSelected.getRotate()[1];
 
     document.getElementById("scalex").value = objectSelected.getScale()[0];
     document.getElementById("scaley").value = objectSelected.getScale()[1];

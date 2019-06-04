@@ -156,7 +156,7 @@ function clickMouseMove(event) {
     for (let i = 0; i < objects.length; i++) {
         if (objects[i].tryIntersection(coords_u)) {
             objectSelected = objects[i];
-            updateDisplay();
+            updateDisplay(objectSelected);
         }
     }
 }
